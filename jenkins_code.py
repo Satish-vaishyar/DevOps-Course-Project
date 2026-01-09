@@ -1,4 +1,3 @@
-import argparse
 import sys
 
 
@@ -22,35 +21,34 @@ def calculate_grade(marks):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Student Grade Evaluation System"
-    )
+    # Expected arguments:
+    # script.py name department semester mark1 mark2 mark3
+    if len(sys.argv) != 7:
+        print("Usage: python jenkins_code.py <name> <department> <semester> <mark1> <mark2> <mark3>")
+        sys.exit(1)
 
-    parser.add_argument("--name", required=True, help="Student name")
-    parser.add_argument("--department", required=True, help="Department")
-    parser.add_argument("--semester", required=True, help="Semester")
-    parser.add_argument(
-        "--marks",
-        required=True,
-        nargs=3,
-        type=float,
-        help="Marks of three subjects"
-    )
+    name = sys.argv[1]
+    department = sys.argv[2]
+    semester = sys.argv[3]
 
-    args = parser.parse_args()
+    try:
+        marks = list(map(float, sys.argv[4:7]))
+    except ValueError:
+        print("Error: Marks must be numeric values")
+        sys.exit(1)
 
     # Validate marks range
-    for mark in args.marks:
+    for mark in marks:
         if mark < 0 or mark > 100:
             print("Error: Marks must be between 0 and 100")
             sys.exit(1)
 
-    average, grade = calculate_grade(args.marks)
+    average, grade = calculate_grade(marks)
 
     print("=== Student Result ===")
-    print(f"Name       : {args.name}")
-    print(f"Department : {args.department}")
-    print(f"Semester   : {args.semester}")
+    print(f"Name       : {name}")
+    print(f"Department : {department}")
+    print(f"Semester   : {semester}")
     print(f"Average    : {average:.2f}")
     print(f"Grade      : {grade}")
 
