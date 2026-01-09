@@ -17,23 +17,23 @@ def calculate_grade(marks):
     return average, grade
 
 
+def main():
+    print("=== Student Grade Evaluation System ===")
 
-print("=== Student Grade Evaluation System ===")
+    name = input("Enter student name: ")
+    department = input("Enter department: ")
+    semester = input("Enter semester: ")
 
-name = input("Enter student name: ")
-department = input("Enter department: ")
-semester = input("Enter semester: ")
+    marks = []
+    for i in range(1, 4):
+        mark = float(input(f"Enter marks for Subject {i}: "))
+        marks.append(mark)
 
-marks = []
-for i in range(1, 4):
-    mark = float(input(f"Enter marks for Subject {i}: "))
-    marks.append(mark)
+    average, grade = calculate_grade(marks)
 
-average, grade = calculate_grade(marks)
-
-print("\n--- Student Result ---")
-print(f"Name       : {name}")
-print(f"Department : {department}")
-print(f"Semester   : {semester}")
-print(f"Average    : {average:.2f}")
-print(f"Grade      : {grade}")
+    print("\n--- Student Result ---")
+    print(f"Name       : {name}")
+    print(f"Department : {department}")
+    print(f"Semester   : {semester}")
+    print(f"Average    : {average:.2f}")
+    print(f"Grade      : {grade}")
